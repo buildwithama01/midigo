@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useCallback } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
+import { isSupabaseConfigured } from "@/lib/supabase/config";
 
 // 30 minutes in milliseconds
 const TIMEOUT_MS = 30 * 60 * 1000;
@@ -13,16 +14,25 @@ export default function SessionTimeoutProvider({
   children: React.ReactNode;
 }) {
   const router = useRouter();
-  const supabase = createClient();
-
-  const handleLogout = useCallback(async () => {
-    await supabase.auth.signOut();
-    router.push("/sign-in");
-    router.refresh();
-  }, [router, supabase]);
 
   useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
+    if (!isSupabaseConfigured()) return;
+
+    let supabase: ReturnType<typeof createClient>;
+    try {
+      supabase = createClient();
+    } catch {
+      return;
+    }
+
+    let timeoutId: ReturnType<typeof setTimeout>;
+
+    const handleLogout = async () => {
+      const { error } = await supabase.auth.signOut();
+      if (error) return;
+      router.push("/sign-in");
+      router.refresh();
+    };
 
     const resetTimeout = () => {
       clearTimeout(timeoutId);
@@ -46,7 +56,7 @@ export default function SessionTimeoutProvider({
         window.removeEventListener(event, resetTimeout);
       });
     };
-  }, [handleLogout]);
+  }, [router]);
 
   return <>{children}</>;
 }
