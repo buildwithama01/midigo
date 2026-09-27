@@ -1,0 +1,465 @@
+.chatter-app {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  background: var(--background);
+}
+
+.chatter-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  border-bottom: 1px solid var(--border);
+  background: var(--header-overlay);
+  backdrop-filter: blur(16px);
+}
+
+.chatter-header-inner {
+  align-items: center;
+  display: flex;
+  height: var(--nav-h);
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: 1440px;
+  padding: 0 1.5rem;
+  width: 100%;
+}
+
+.chatter-brand-row,
+.chatter-header-actions {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.chatter-brand {
+  color: var(--text-primary);
+  font-size: 1.3125rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.chatter-brand span {
+  color: var(--purple);
+  font-size: 0.9375rem;
+  font-weight: 500;
+}
+
+.chatter-mobile-menu-button,
+.chatter-sidebar-close {
+  display: none;
+}
+
+.chatter-presence-toggle {
+  align-items: center;
+  background: var(--surface-2);
+  border: 1px solid var(--border-mid);
+  border-radius: 999px;
+  color: var(--text-primary);
+  cursor: pointer;
+  display: flex;
+  gap: 0.6rem;
+  padding: 0.35rem 0.75rem;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.chatter-presence-toggle:hover {
+  background: var(--surface-2);
+  border-color: var(--border-lite);
+}
+
+.chatter-presence-toggle:focus-visible,
+.chatter-icon-button:focus-visible,
+.chatter-profile-button:focus-visible {
+  outline: 1px solid var(--purple);
+  outline-offset: 3px;
+}
+
+.chatter-presence-copy {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+  text-align: left;
+}
+
+.chatter-presence-copy strong {
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.chatter-presence-copy small {
+  color: var(--text-muted);
+  font-size: 0.625rem;
+}
+
+.chatter-presence-dot,
+.chatter-unread-dot {
+  background: var(--accent-strong);
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px var(--accent-ring);
+}
+
+.chatter-presence-dot {
+  height: 7px;
+  width: 7px;
+}
+
+.chatter-icon-button,
+.chatter-profile-button {
+  align-items: center;
+  background: transparent;
+  border: 1px solid var(--border-mid);
+  border-radius: 50%;
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.chatter-icon-button {
+  height: 38px;
+  width: 38px;
+}
+
+.chatter-profile-button {
+  background: var(--purple-bg);
+  color: var(--text-purple);
+  font-size: 0.75rem;
+  font-weight: 700;
+  height: 36px;
+  width: 36px;
+}
+
+.chatter-unread-dot {
+  height: 6px;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  width: 6px;
+}
+
+.chatter-header-menu {
+  position: relative;
+}
+
+.chatter-menu-popover {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 18px 50px var(--shadow-strong);
+  color: var(--text-secondary);
+  padding: 1rem;
+  position: absolute;
+  right: 0;
+  top: calc(100% + 10px);
+  width: 280px;
+  z-index: 60;
+}
+
+.chatter-menu-popover p {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  margin: 0.45rem 0;
+}
+
+.chatter-menu-popover small {
+  color: var(--text-muted);
+  font-size: 0.6875rem;
+}
+
+.chatter-profile-popover {
+  padding: 0.5rem;
+  width: 220px;
+}
+
+.chatter-profile-summary {
+  border-bottom: 1px solid var(--border-mid);
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+}
+
+.chatter-profile-summary strong {
+  color: var(--text-primary);
+  font-size: 0.875rem;
+}
+
+.chatter-profile-summary span {
+  color: var(--text-purple);
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+}
+
+.chatter-profile-summary small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.chatter-profile-popover a {
+  border-radius: 6px;
+  color: var(--text-secondary);
+  display: block;
+  font-size: 0.8125rem;
+  padding: 0.65rem;
+  text-decoration: none;
+}
+
+.chatter-profile-popover a:hover {
+  background: var(--hover);
+  color: var(--text-primary);
+}
+
+.chatter-workspace {
+  display: grid;
+  flex: 1;
+  grid-template-columns: 1fr;
+  min-height: 0;
+  width: 100%;
+}
+
+.chatter-sidebar {
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  display: none;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2.5rem 1.25rem;
+  width: 248px;
+}
+
+.chatter-sidebar-heading {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.chatter-sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.chatter-nav-item {
+  border-left: 1px solid transparent;
+  border-radius: 0 8px 8px 0;
+  color: var(--text-muted);
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.8rem 0.9rem;
+  text-decoration: none;
+  transition: color 0.2s, background 0.2s, border-color 0.2s;
+}
+
+.chatter-nav-item span {
+  color: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.chatter-nav-item small {
+  color: var(--text-muted);
+  font-size: 0.6875rem;
+  line-height: 1.35;
+}
+
+.chatter-nav-item:hover {
+  background: var(--hover-subtle);
+  color: var(--text-primary);
+}
+
+.chatter-nav-item-active {
+  border-left-color: var(--accent-strong);
+  background: var(--accent-soft-subtle);
+  color: var(--text-primary);
+}
+
+.chatter-sidebar-note {
+  align-items: flex-start;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  display: flex;
+  gap: 0.75rem;
+  margin-top: auto;
+  padding: 0.9rem;
+}
+
+.chatter-sidebar-note strong {
+  color: var(--text-primary);
+  display: block;
+  font-size: 0.75rem;
+}
+
+.chatter-sidebar-note p {
+  color: var(--text-muted);
+  font-size: 0.6875rem;
+  line-height: 1.45;
+  margin: 0.25rem 0 0;
+}
+
+.chatter-note-icon {
+  align-items: center;
+  border: 1px solid var(--purple);
+  border-radius: 50%;
+  color: var(--text-purple);
+  display: flex;
+  flex: 0 0 auto;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  height: 22px;
+  justify-content: center;
+  width: 22px;
+}
+
+.chatter-sidebar-backdrop {
+  display: none;
+}
+
+.chatter-main {
+  margin: 0 auto;
+  max-width: 1320px;
+  min-width: 0;
+  padding: 2.25rem 1.5rem 4rem;
+  width: 100%;
+}
+
+
+
+.chatter-toast {
+  background: var(--surface-2);
+  border: 1px solid var(--border-lite);
+  border-left: 3px solid var(--accent-strong);
+  border-radius: 8px;
+  bottom: 1.25rem;
+  box-shadow: 0 14px 45px var(--shadow);
+  color: var(--text-primary);
+  font-size: 0.8125rem;
+  max-width: calc(100vw - 2rem);
+  opacity: 0;
+  padding: 0.8rem 1rem;
+  pointer-events: none;
+  position: fixed;
+  right: 1.25rem;
+  transform: translateY(12px);
+  transition: opacity 0.2s, transform 0.2s;
+  z-index: 100;
+}
+
+.chatter-toast-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (min-width: 1024px) {
+  .chatter-sidebar {
+    display: flex;
+  }
+
+  .chatter-workspace {
+    grid-template-columns: 248px 1fr;
+  }
+
+  .chatter-main {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+
+
+}
+
+@media (max-width: 1023px) {
+  .chatter-header-inner {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .chatter-presence-copy {
+    display: none;
+  }
+
+  .chatter-presence-toggle {
+    padding: 0.55rem;
+  }
+
+  .chatter-mobile-menu-button {
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 0.5rem;
+  }
+
+  .chatter-mobile-menu-button span {
+    background: var(--text-secondary);
+    border-radius: 2px;
+    display: block;
+    height: 1.5px;
+    width: 18px;
+  }
+
+  .chatter-sidebar {
+    left: 0;
+    max-width: 300px;
+    position: fixed;
+    right: 0;
+    top: var(--nav-h);
+    bottom: 0;
+    transform: translateX(-102%);
+    transition: transform 0.22s ease;
+    width: min(82vw, 300px);
+    z-index: 55;
+  }
+
+  .chatter-sidebar-open {
+    display: flex;
+    transform: translateX(0);
+  }
+
+  .chatter-sidebar-backdrop {
+    background: var(--backdrop);
+    border: 0;
+    display: block;
+    inset: var(--nav-h) 0 0;
+    position: fixed;
+    z-index: 54;
+  }
+
+  .chatter-sidebar-close {
+    align-items: center;
+    background: transparent;
+    border: 0;
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    font-size: 1.5rem;
+    height: 32px;
+    justify-content: center;
+    width: 32px;
+  }
+}
+
+@media (max-width: 520px) {
+  .chatter-brand {
+    font-size: 1.125rem;
+  }
+
+  .chatter-brand span {
+    font-size: 0.8125rem;
+  }
+
+  .chatter-main {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+
+}
